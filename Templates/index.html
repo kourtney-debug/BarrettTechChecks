@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Barrett Tech Checks – Weekly Update</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: Arial, sans-serif; background: #f7f7f7; padding: 20px; }
+    .container { max-width: 800px; margin:auto; background:white; padding:20px; border-radius:8px; }
+    label { font-weight:bold; display:block; margin-top:15px; }
+    textarea, input, select {
+      width:100%; padding:10px; border:1px solid #ccc; border-radius:5px;
+    }
+    button { margin-top:20px; padding:10px 20px; background:#2b7cff; border:none; color:white; border-radius:5px; cursor:pointer; }
+    button:hover { background:#145cd8; }
+    .top { text-align:right; margin-bottom:10px; }
+    .top a { text-decoration:none; color:#2b7cff; }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="top">
+      <a href="{{ url_for('dashboard') }}">View Dashboard</a>
+    </div>
+
+    <h2>Barrett Tech Checks – Weekly Emerging Tech Form</h2>
+
+    <form method="POST">
+
+      <label>Your Name</label>
+      <input type="text" name="name" required>
+
+      <label>Team / Department</label>
+      <input type="text" name="team" required>
+
+      <label>Weekly Accomplishments</label>
+      <textarea name="accomplishments"></textarea>
+
+      <label>Goals for the Upcoming Week</label>
+      <textarea name="goals"></textarea>
+
+      <label>Major Challenges / Blockers</label>
+      <textarea name="challenges"></textarea>
+
+      <h3>New Tools / Technologies Evaluated</h3>
+
+      <label>Tool Name</label>
+      <input type="text" name="tool_name">
+
+      <label>Tool Description</label>
+      <textarea name="tool_description"></textarea>
+
+      <label>Tool Link (optional)</label>
+      <input type="text" name="tool_link">
+
+      <label>Rating</label>
+      <select name="tool_rating">
+        <option value="">Select Rating</option>
+        <option>⭐</option><option>⭐⭐</option><option>⭐⭐⭐</option>
+        <option>⭐⭐⭐⭐</option><option>⭐⭐⭐⭐⭐</option>
+      </select>
+
+      <button type="submit">Submit Check-In</button>
+
+    </form>
+  </div>
+</body>
+</html>
