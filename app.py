@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, send_file
+from flask import Flask, render_template, request, redirect, url_for, Response
 import sqlite3
 from datetime import datetime
 import csv
@@ -93,7 +93,7 @@ def dashboard():
 
 @app.route("/export")
 def export():
-    """Export all entries as CSV."""
+    """Export all entries as CSV as a direct HTTP response."""
     conn = sqlite3.connect(DB_PATH)
     c = conn.cursor()
     c.execute(
@@ -102,6 +102,7 @@ def export():
     rows = c.fetchall()
     conn.close()
 
+    # Build CSV in memory as text
     si = StringIO()
     writer = csv.writer(si)
     headers = [
@@ -123,15 +124,17 @@ def export():
     output = si.getvalue()
     si.close()
 
-    return send_file(
-        StringIO(output),
+    # Return as HTTP response with CSV headers
+    return Response(
+        output,
         mimetype="text/csv",
-        as_attachment=True,
-        download_name="barretttechchecks.csv",
+        headers={
+            "Content-Disposition": "attachment; filename=barretttechchecks.csv"
+        },
     )
 
 
-# 👇 This line makes sure the table is created BOTH locally and on Railway
+# Ensure the database and table are created when the app starts
 init_db()
 
 if __name__ == "__main__":
