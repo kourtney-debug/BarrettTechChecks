@@ -1,68 +1,257 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Barrett Tech Checks – Weekly Update</title>
+  <title>Barrett Tech Checks – Weekly Emerging Tech Form</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <style>
-    body { font-family: Arial, sans-serif; background: #f7f7f7; padding: 20px; }
-    .container { max-width: 800px; margin:auto; background:white; padding:20px; border-radius:8px; }
-    label { font-weight:bold; display:block; margin-top:15px; }
-    textarea, input, select {
-      width:100%; padding:10px; border:1px solid #ccc; border-radius:5px;
+    :root {
+      --primary: #265df2;
+      --primary-light: #e6eeff;
+      --bg: #f4f5f7;
+      --text-main: #222;
+      --text-muted: #666;
+      --border: #ddd;
+      --card-bg: #ffffff;
     }
-    button { margin-top:20px; padding:10px 20px; background:#2b7cff; border:none; color:white; border-radius:5px; cursor:pointer; }
-    button:hover { background:#145cd8; }
-    .top { text-align:right; margin-bottom:10px; }
-    .top a { text-decoration:none; color:#2b7cff; }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #f4f5f7, #e6efff);
+      color: var(--text-main);
+    }
+
+    .page {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 24px 16px 40px;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-circle {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+    .logo-text {
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+    .logo-sub {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .nav-link {
+      font-size: 14px;
+      text-decoration: none;
+      color: var(--primary);
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--primary-light);
+      background: #fff;
+    }
+
+    .nav-link:hover {
+      background: var(--primary-light);
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+      padding: 24px 20px 30px;
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 22px;
+      margin-bottom: 4px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .date-line {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: 600;
+      display: block;
+      margin-top: 16px;
+      margin-bottom: 4px;
+      font-size: 14px;
+    }
+
+    input[type="text"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 9px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      font-size: 14px;
+      font-family: inherit;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+      background: #fafafa;
+    }
+
+    input[type="text"]:focus,
+    textarea:focus,
+    select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(38, 93, 242, 0.12);
+      background: #fff;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 70px;
+    }
+
+    h3 {
+      margin-top: 26px;
+      margin-bottom: 6px;
+      font-size: 16px;
+    }
+
+    .section-hint {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    button {
+      margin-top: 22px;
+      padding: 10px 20px;
+      font-size: 15px;
+      border: none;
+      border-radius: 999px;
+      background-color: var(--primary);
+      color: #ffffff;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    button:hover {
+      background-color: #1847c2;
+    }
+
+    @media (max-width: 640px) {
+      .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="page">
 
-    <div class="top">
-      <a href="{{ url_for('dashboard') }}">View Dashboard</a>
+    <div class="top-bar">
+      <div class="logo-wrap">
+        <div class="logo-circle">BT</div>
+        <div>
+          <div class="logo-text">Barrett Tech Checks</div>
+          <div class="logo-sub">Weekly emerging-tech status check-in</div>
+        </div>
+      </div>
+
+      <a class="nav-link" href="{{ url_for('dashboard') }}">View Dashboard</a>
     </div>
 
-    <h2>Barrett Tech Checks – Weekly Emerging Tech Form</h2>
+    <div class="card">
+      <h2>Weekly Emerging Tech Form</h2>
+      <div class="subtitle">Use this form to log your weekly progress and any AI tools or emerging technologies you evaluated.</div>
+      <div class="date-line">Today’s date: <span id="current-date"></span></div>
 
-    <form method="POST">
+      <form method="POST">
+        <label>Your Name</label>
+        <input type="text" name="name" required>
 
-      <label>Your Name</label>
-      <input type="text" name="name" required>
+        <label>Team / Department</label>
+        <input type="text" name="team" required>
 
-      <label>Team / Department</label>
-      <input type="text" name="team" required>
+        <label>Weekly Accomplishments</label>
+        <textarea name="accomplishments" placeholder="What did you work on or complete this week?"></textarea>
 
-      <label>Weekly Accomplishments</label>
-      <textarea name="accomplishments"></textarea>
+        <label>Goals for the Upcoming Week</label>
+        <textarea name="goals" placeholder="What do you plan to work on next week?"></textarea>
 
-      <label>Goals for the Upcoming Week</label>
-      <textarea name="goals"></textarea>
+        <label>Major Challenges / Blockers</label>
+        <textarea name="challenges" placeholder="Anything slowing you down or blocking progress?"></textarea>
 
-      <label>Major Challenges / Blockers</label>
-      <textarea name="challenges"></textarea>
+        <h3>New Tools / Technologies Evaluated</h3>
+        <div class="section-hint">Log one key tool or technology you explored this week.</div>
 
-      <h3>New Tools / Technologies Evaluated</h3>
+        <label>Tool Name</label>
+        <input type="text" name="tool_name" placeholder="e.g., ChatGPT, Claude, Replit Agents">
 
-      <label>Tool Name</label>
-      <input type="text" name="tool_name">
+        <label>Tool Description</label>
+        <textarea name="tool_description" placeholder="What does it do? How did you test it?"></textarea>
 
-      <label>Tool Description</label>
-      <textarea name="tool_description"></textarea>
+        <label>Tool Link (optional)</label>
+        <input type="text" name="tool_link" placeholder="https://">
 
-      <label>Tool Link (optional)</label>
-      <input type="text" name="tool_link">
+        <label>Rating</label>
+        <select name="tool_rating">
+          <option value="">Select Rating</option>
+          <option>⭐</option>
+          <option>⭐⭐</option>
+          <option>⭐⭐⭐</option>
+          <option>⭐⭐⭐⭐</option>
+          <option>⭐⭐⭐⭐⭐</option>
+        </select>
 
-      <label>Rating</label>
-      <select name="tool_rating">
-        <option value="">Select Rating</option>
-        <option>⭐</option><option>⭐⭐</option><option>⭐⭐⭐</option>
-        <option>⭐⭐⭐⭐</option><option>⭐⭐⭐⭐⭐</option>
-      </select>
-
-      <button type="submit">Submit Check-In</button>
-
-    </form>
+        <button type="submit">Submit Check-In</button>
+      </form>
+    </div>
   </div>
+
+  <script>
+    // Fill in today's date
+    const dateSpan = document.getElementById('current-date');
+    const today = new Date();
+    dateSpan.textContent = today.toLocaleDateString(undefined, {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    });
+  </script>
 </body>
 </html>
